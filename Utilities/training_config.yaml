@@ -1,0 +1,36 @@
+Run_experiment : 'exp_1_config'
+base_config :
+    data_dir : "./data"
+    env_name : 'MountainCar-v0' #'CartPole-v1'
+    dataset : ""       # medium / medium-replay / medium-expert
+    rtg_scale : 1000                # scale to normalize returns to go
+    
+    # use v3 env for evaluation because
+    # DT paper evaluates results on v3 envs
+    
+    #env_name = 'CartPole-v1'
+    rtg_target : 1000
+    
+    
+    
+    max_eval_ep_len : 1000      # max len of one evaluation episode
+    num_eval_ep : 10            # num of evaluation episodes per iteration
+    
+    batch_size : 64             # training batch size
+    lr : 0.0001                   # learning rate
+    wt_decay : 0.0001              # weight decay
+    warmup_steps : 100        # warmup steps for lr scheduler
+    
+    # total updates = max_train_iters x num_updates_per_iter
+    max_train_iters : 20
+    num_updates_per_iter : 100
+    
+    context_len : 20        # K in decision transformer
+    n_blocks : 3            # num of transformer blocks
+    embed_dim : 128         # embedding (hidden) dim of transformer
+    n_heads : 1             # num of transformer heads
+    dropout_p : 0.1         # dropout probability
+    log_dir : "./dt_runs/"
+
+exp_1_config :
+    t : 1
